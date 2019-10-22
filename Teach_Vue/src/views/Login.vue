@@ -1,77 +1,70 @@
 <template>
-    <div class="login">
-        <div>
-          <img src="../assets/logo.png" alt="logo-teach">
-        </div>
-        <input type="text" placeholder="Email">
-        <br>
-        <input type="text" placeholder="Senha">
-        <br>
-        <div class="btn-login">
-            <button @click="login">Login</button>
-        </div>
-        <p>
-            Você não tem conta?
-            <router-link to="/registrar"> Crie uma conta</router-link>
-        </p>
-    </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-7">
+                <div class="card bg-secondary shadow border-0">
+                    <!--
+                    <div class="card-header bg-transparent pb-5">
+                        <div class="text-muted text-center mt-2 mb-3"><small>Entrar com</small></div>
+                        <div class="btn-wrapper text-center">
+                            <a href="#" class="btn btn-neutral btn-icon">
+                                <span class="btn-inner--icon"><img src="img/icons/common/google.svg"></span>
+                                <span class="btn-inner--text">Google</span>
+                            </a>
+                        </div>
+                    </div>
+                    -->
+                    <div class="card-body px-lg-5 py-lg-5">
+                        <!--
+                        <div class="text-center text-muted mb-4">
+                            <small>Ou insira suas credenciais abaixo</small>
+                        </div>
+                        -->
+                        <form role="form">
+                            <base-input class="input-group-alternative mb-3"
+                                        placeholder="Email"
+                                        addon-left-icon="ni ni-email-83"
+                                        v-model="model.email">
+                            </base-input>
 
+                            <base-input class="input-group-alternative"
+                                        placeholder="Senha"
+                                        type="password"
+                                        addon-left-icon="ni ni-lock-circle-open"
+                                        v-model="model.senha">
+                            </base-input>
+
+                            <base-checkbox class="custom-control-alternative">
+                                <span class="text-muted">Lembrar-me</span>
+                            </base-checkbox>
+                            <div class="text-center">
+                                <base-button type="primary" class="my-4">Entrar</base-button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-6">
+                        <a href="#" class="text-light"><small>Esqueceu sua senha?</small></a>
+                    </div>
+                    <div class="col-6 text-right">
+                        <router-link to="/register" class="text-light"><small>Criar uma nova conta</small></router-link>
+                    </div>
+                </div>
+            </div>
+        </div>
 </template>
-
 <script>
-//import firebase from 'firebase';
-export default {
-  name: "login",
-  data () {
-    return {
-      email: '',
-      senha: ''
-    };
-  },
-   methods: {
-      login: function() {
-        logar.auth().signInWithEmailAndPassword(this.email, this.senha).then(
-          (user) => {
-            this.$router.replace('home')
-            alert(`Bem Vindo, ${{email}}`)
-          },
-          (err) => {
-            alert('Não foi possível realizar o login. ' + err.message)
-          }
-        );
+  export default {
+    name: 'login',
+    data() {
+      return {
+        model: {
+          email: '',
+          password: ''
+        }
       }
     }
   }
 </script>
-
-<style scoped>
-.login {
-  margin-top: 40px;
-}
-input {
-  margin: 10px 0;
-  width: 20%;
-  padding: 15px;
-}
-button {
-  font-family: "Roboto", sans-serif;
-  text-transform: uppercase;
-  outline: 0;
-  background: #4caf50;
-  border: 0;
-  padding: 15px;
-  color: #ffffff;
-  font-size: 14px;
-  -webkit-transition: all 0.3 ease;
-  transition: all 0.3 ease;
-  cursor: pointer;
-}
-p {
-  margin-top: 40px;
-  font-size: 13px;
-}
-p a {
-  text-decoration: underline;
-  cursor: pointer;
-}
+<style>
 </style>

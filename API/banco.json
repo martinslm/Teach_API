@@ -1,0 +1,48 @@
+{
+	"Usuario":
+	{
+		"Id": 0,
+		"CaminhoFoto": "string",
+		"Nome": "string", 
+		"Email": "string",
+		"Senha": "string",
+		"Genero": 0,
+		"DataNascimento": "dateTime", 
+		"IdiomaOrigem": 
+		{
+			"Id": 0,
+			"Idioma": "string"
+		},
+		"IdiomaAprendizado":
+		{
+			"Id": 0,
+			"Idioma": "string"
+		},
+		"IdiomaDominio":
+		{
+			"Id": 0,
+			"Idioma": "string"
+		},
+		"Universidade":
+		{
+			"Id": 0,
+			"UniversidadeDesc": "string"
+		},
+		"AreaEstudoDominio":
+		{
+			"IdAreaGeral": 0,
+			"IdAreaEspecifica": 0,
+			"AreaGeralDesc": "string",
+			"AreaEspecificaDesc": "string"
+		},
+		"AreaEstudoAprendizado":
+		{
+			"IdAreaGeral": 0,
+			"IdAreaEspecifica": 0,
+			"AreaGeralDesc": "string",
+			"AreaEspecificaDesc": "string"
+		},
+		"TipoIteracao": 0
+	}
+	
+}
