@@ -19,12 +19,9 @@ namespace Teach_API.Controllers
         //[RequireHttps]
         [HttpGet]
         [Route("fazerlogin")]
-        public LoginResult FazerLogin(LoginModel loginModel)
+        public LoginResult FazerLogin([FromBody]LoginModel loginModel)
         {
             var result = new LoginResult();
-
-            loginModel.Login = "teste";
-            loginModel.Senha = "teste";
 
             if (!result.ValidarModel(loginModel))
                 return result;
@@ -39,17 +36,18 @@ namespace Teach_API.Controllers
             return result;
         }
 
-        [HttpGet]
-        [Route("teste")]
-        //[ActionName("fazerlogin")]
-        public LoginResult Teste(LoginModel credenciais)
+        [HttpPost]
+        [Route("cadastrar")]
+        public CadastrarUsuarioResult CadastrarUsuario([FromBody]UsuarioModel dadosUsuario)
         {
-            var result = new LoginResult();
+            var result = new CadastrarUsuarioResult();
 
-            if (!result.ValidarModel(credenciais))
+            if (!result.ValidarModel(dadosUsuario))
                 return result;
 
             //validar usuario no repository.
+
+            //esta função não precisa retornar o id do usuario, apenas verificar se o usuário foi cadastrado com sucesso ou não. 
 
             // se usuario for 0 add uma mensagem de erro, retorna o usuario 0. Sucesso = false.
 
