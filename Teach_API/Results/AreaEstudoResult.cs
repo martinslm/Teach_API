@@ -6,11 +6,11 @@ using Teach_API.Models;
 
 namespace Teach_API.Results
 {
-    public class AreaEstudoGeralResult : ResultBase
+    public class AreaEstudoResult : ResultBase
     {
         public IList<AreaEstudo> AreasEstudo { get; set; }
 
-        public AreaEstudoGeralResult()
+        public AreaEstudoResult()
         {
             AreasEstudo = new List<AreaEstudo>();
         }
