@@ -45,13 +45,61 @@ namespace Teach_API.Controllers
             if (!result.ValidarModel(dadosUsuario))
                 return result;
 
-            //validar usuario no repository.
+            var repository = new UsuarioRepository();
+         
+            if(repository.ValidarContaExistente(dadosUsuario.Email))
+            {
+                result.Mensagem.Add("Já existe um usuário cadastrado para o e-mail informado.");
+                return result;
+            }
 
-            //esta função não precisa retornar o id do usuario, apenas verificar se o usuário foi cadastrado com sucesso ou não. 
+            result.IdUsuario = repository.CadastrarUsuario(dadosUsuario);
 
-            // se usuario for 0 add uma mensagem de erro, retorna o usuario 0. Sucesso = false.
+            if(result.IdUsuario == 0)
+            {
+                result.Mensagem.Add("Não foi possível cadastrar o usuário informado, houve um erro ao realizar a operação.");
+                return result;
+            }
 
-            //se usuario for diferente de 0, retorna sucess = true e nenhuma mensagem de erro e o ID do usuario. 
+            return result;
+        }
+
+        [HttpGet]
+        [Route("obterDados")]
+        public UsuarioResult ObterDadosUsuario([FromBody]int idUsuario)
+        {
+            var result = new UsuarioResult();
+
+            if (idUsuario <= 0)
+            {
+                result.Mensagem.Add("O id informado é inválido.");
+                return result;
+            }
+
+            var repository = new UsuarioRepository();
+
+           // result.IdUsuario = repository.Obter(loginModel);
+
+            //if (result.IdUsuario == 0)
+                result.Mensagem.Add("Não foi possível localizar o usuário informado. Verifique as credenciais de acesso");
+
+            return result;
+        }
+
+        [HttpGet]
+        [Route("alterar")]
+        public UsuarioResult AlterarUsuario([FromBody]UsuarioModel usuario)
+        {
+            var result = new UsuarioResult();
+
+            result.ValidarModel(usuario);
+
+            var repository = new UsuarioRepository();
+
+            // result.IdUsuario = repository.Obter(loginModel);
+
+            //if (result.IdUsuario == 0)
+            result.Mensagem.Add("Não foi possível localizar o usuário informado. Verifique as credenciais de acesso");
 
             return result;
         }

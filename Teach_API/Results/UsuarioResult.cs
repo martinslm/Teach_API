@@ -4,7 +4,7 @@ using Teach_API.Models;
 
 namespace Teach_API.Results
 {
-    public class UsuarioResult
+    public class UsuarioResult : ResultBase
     {
         public long Id { get; set; }
         public string CaminhoFoto { get; set; }

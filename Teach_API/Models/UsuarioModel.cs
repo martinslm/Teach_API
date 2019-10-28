@@ -13,7 +13,7 @@ namespace Teach_API.Models
         public DateTime DataNascimento { get; set; }
         public long IdIdiomaOrigem { get; set; }
         public long? IdIdiomaAprendizado { get; set; }
-        public long IdIdiomaDominio { get; set; }
+        public long? IdIdiomaDominio { get; set; }
         public long Universidade { get; set; }
         public long IdAreaEstudoGeralDominio { get; set; }
         public long IdAreaEstudoGeralAprendizado { get; set; }

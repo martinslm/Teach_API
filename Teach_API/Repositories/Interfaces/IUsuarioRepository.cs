@@ -9,6 +9,8 @@ namespace Teach_API.Repositories.Interfaces
     public interface IUsuarioRepository
     {
         int ValidarLogin (LoginModel loginModel);
-        int CadastrarUsuario();
+        int CadastrarUsuario(UsuarioModel usuario);
+        bool ValidarContaExistente(string email);
+        UsuarioModel ObterDadosUsuario(int idUsuario);
     }
 }
