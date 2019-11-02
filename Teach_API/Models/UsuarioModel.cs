@@ -5,6 +5,7 @@ namespace Teach_API.Models
 {
     public class UsuarioModel
     {
+        public int? IdUsuario { get; set; }
         public string CaminhoFoto { get; set; }
         public string Nome { get; set; }
         public string Email { get; set; }

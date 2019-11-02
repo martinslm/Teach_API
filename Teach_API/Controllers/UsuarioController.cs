@@ -66,7 +66,7 @@ namespace Teach_API.Controllers
 
         [HttpGet]
         [Route("obterDados")]
-        public UsuarioResult ObterDadosUsuario([FromBody]int idUsuario)
+        public UsuarioResult ObterDadosUsuario([FromHeader]int idUsuario)
         {
             var result = new UsuarioResult();
 
@@ -78,28 +78,29 @@ namespace Teach_API.Controllers
 
             var repository = new UsuarioRepository();
 
-           // result.IdUsuario = repository.Obter(loginModel);
+           result.Usuario = repository.ObterDadosUsuario(idUsuario);
 
-            //if (result.IdUsuario == 0)
-                result.Mensagem.Add("Não foi possível localizar o usuário informado. Verifique as credenciais de acesso");
+            if (result.Usuario == new Usuario())
+                result.Mensagem.Add(string.Format("Não foi possível localizar o usuário informado. Id {0}", idUsuario));
 
             return result;
         }
 
         [HttpGet]
         [Route("alterar")]
-        public UsuarioResult AlterarUsuario([FromBody]UsuarioModel usuario)
+        public AlterarDadosUsuarioResult AlterarUsuario([FromBody]UsuarioModel usuario)
         {
-            var result = new UsuarioResult();
+            var result = new AlterarDadosUsuarioResult();
 
-            result.ValidarModel(usuario);
+            if(!result.ValidarModel(usuario))
+                return result;
 
             var repository = new UsuarioRepository();
 
-            // result.IdUsuario = repository.Obter(loginModel);
+            var sucesso = repository.AtualizarDadosUsuario(usuario);
 
-            //if (result.IdUsuario == 0)
-            result.Mensagem.Add("Não foi possível localizar o usuário informado. Verifique as credenciais de acesso");
+            if(!sucesso)
+            result.Mensagem.Add("Não foi possível atualizar os dados do usuário. Houve um ou mais erros ao realizar a operação.");
 
             return result;
         }

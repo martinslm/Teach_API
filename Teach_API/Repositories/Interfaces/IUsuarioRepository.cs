@@ -11,6 +11,7 @@ namespace Teach_API.Repositories.Interfaces
         int ValidarLogin (LoginModel loginModel);
         int CadastrarUsuario(UsuarioModel usuario);
         bool ValidarContaExistente(string email);
-        UsuarioModel ObterDadosUsuario(int idUsuario);
+        Usuario ObterDadosUsuario(int idUsuario);
+        bool AtualizarDadosUsuario(UsuarioModel usuario);
     }
 }
