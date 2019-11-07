@@ -1,13 +1,22 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './router'
+import store from './store/index'
+import router from './routes/router'
+import DashboardPlugin from './plugins/dashboard-plugin'
+import ApiService from './services/api.service'
+import { VueSpinners } from '@saeris/vue-spinners'
 import './registerServiceWorker'
-import ArgonDashboard from './plugins/argon-dashboard'
 
-Vue.config.productionTip = false
+Vue.use(DashboardPlugin)
+Vue.use(VueSpinners)
 
-Vue.use(ArgonDashboard)
+// Set the base URL of the API
+ApiService.init(process.env.BASE_URL)
+
+/* eslint-disable no-new */
 new Vue({
-  router,
-  render: h => h(App)
-}).$mount('#app')
+    el: '#app',
+    store,
+    router,
+    render: h => h(App)
+})

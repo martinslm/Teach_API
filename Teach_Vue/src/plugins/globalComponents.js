@@ -17,8 +17,9 @@ import StatsCard from "../components/StatsCard";
 import Modal from "../components/Modal";
 import TabPane from "../components/Tabs/TabPane";
 import Tabs from "../components/Tabs/Tabs";
+import { ValidationProvider } from 'vee-validate';
 
-export default {
+const GlobalComponents = {
   install(Vue) {
     Vue.component(Badge.name, Badge);
     Vue.component(BaseAlert.name, BaseAlert);
@@ -39,5 +40,8 @@ export default {
     Vue.component(Modal.name, Modal);
     Vue.component(TabPane.name, TabPane);
     Vue.component(Tabs.name, Tabs);
+    Vue.component('ValidationProvider', ValidationProvider);
   }
 };
+
+export default GlobalComponents
