@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using System.Web.Http.Cors;
 using Teach_API.Repositories;
 using Teach_API.Results;
 
@@ -11,6 +12,7 @@ namespace Teach_API.Controllers
     {
         [HttpGet]
         [Route("obterareasgerais")]
+        [EnableCors(origins: "*", headers: "*", methods: "*" )]
         public AreaEstudoResult ObterAreasGerais()
         {
             var result = new AreaEstudoResult();

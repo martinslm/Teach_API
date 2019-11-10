@@ -75,7 +75,7 @@
                   addon-left-icon="ni ni-lock-circle-open"
                 />
 
-                <password-strength :password="registerForm.password" />
+                <!-- <password-strength :password="registerForm.password" /> -->
 
                 <base-input
                   v-validate="'required'"
@@ -144,14 +144,14 @@
 
                 <base-input
                   v-validate="'required'"
-                  v-model="registerForm.assuntoaprender"
+                  v-model="registerForm.areasgerais"
                   :error="getError('Assunto que deseja aprender')"
                   :valid="isValid('Assunto que deseja aprender')"
                   name="Assunto que deseja aprender"
                   class="mb-3"
                   prepend-icon="ni ni-books-button"
                   placeholder="Assunto que deseja aprender"
-                  type="text"
+                  type="select"
                   addon-left-icon="ni ni-books"
                 />
 
@@ -249,7 +249,12 @@
   </div>
 </template>
 <script>
+
+
+
+
 import swal from "sweetalert2";
+import areaEstudo from '../../../services/areaestudo';
 import { mapState } from "vuex";
 
 export default {
@@ -269,10 +274,19 @@ export default {
         assuntoaprender: "",
         conversa: "",
         universidade: "",
-        areaestudo: ""
+        areaestudo: "",
+        areasgerais: []
       }
     };
   },
+  mounted(){
+//para testar o retorno
+  areaEstudo.listarAreasGerais().then(resposta => {
+console.log(resposta)
+//aqui os dados de retorno
+this.areasgerais = resposta.data.areasEstudo
+})
+},
   computed: {
     ...mapState({
       registerErrors: state => state.account.status.registerErrors,
@@ -304,6 +318,7 @@ export default {
     }
   }
 };
+
 </script>
 <style scoped>
 </style>

@@ -37,7 +37,7 @@
                                 <span class="text-muted">Lembrar-me</span>
                             </base-checkbox>
                             <div class="text-center">
-                                <base-button type="primary" class="my-4">Entrar</base-button>
+                                <base-button type="primary" class="my-4" @click="login">Entrar</base-button>
                             </div>
                         </form>
                     </div>
@@ -54,6 +54,7 @@
         </div>
 </template>
 <script>
+
   export default {
     name: 'login',
     data() {
@@ -63,7 +64,13 @@
           password: ''
         }
       }
+    },
+    methods: {
+        login: function() {
+            this.$router.replace("home")
+        }
     }
+
   }
 </script>
 <style>
