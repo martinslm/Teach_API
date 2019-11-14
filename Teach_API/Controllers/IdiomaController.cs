@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Http.Cors;
 using Teach_API.Repositories;
 using Teach_API.Results;
 
@@ -14,6 +15,7 @@ namespace Teach_API.Controllers
     {
         [HttpGet]
         [Route("obter")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public IdiomasResult ObterIdiomas()
         {
             var result = new IdiomasResult();

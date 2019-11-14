@@ -40,10 +40,10 @@
             <div class="text-center mt-2 mb-2">Entre com sua conta</div>
           </div>
           <div class="card-body px-lg-5 py-lg-5">
-            <form role="form" @submit.prevent="handleSubmit">
+            <form role="form">
               <base-input
                 v-validate="'required|email|min:12|max:64'"
-                v-model="loginForm.email"
+                v-model="loginForm.Login"
                 :error="getError('e-mail')"
                 :valid="isValid('e-mail')"
                 name="e-mail"
@@ -55,7 +55,7 @@
 
               <base-input
                 v-validate="'required|min:6|max:64'"
-                v-model="loginForm.password"
+                v-model="loginForm.Senha"
                 :error="getError('senha')"
                 :valid="isValid('senha')"
                 name="senha"
@@ -81,9 +81,9 @@
                 <base-button
                   :disabled="loggingIn"
                   type="primary"
-                  native-type="submit"
                   size="lg"
                   class="my-4 btn-block"
+                  @click="efetuarLogin()"
                 >Entrar</base-button>
               </div>
             </form>
@@ -109,14 +109,18 @@
 <script>
 import { mapState } from "vuex";
 import ApiService from "../../../services/api.service";
+import usuario from "../../../services/usuario";
 
 export default {
   data() {
     return {
       loginForm: {
-        email: "",
-        password: ""
-      }
+        Login: "",
+        Senha: ""
+      },
+      retornoAPI: "",
+      mensagemAPI: true,
+      idUsuario = 0
     };
   },
   computed: {
@@ -151,11 +155,20 @@ export default {
         });
     },
     getError(name) {
-      return this.errors.first(name);
+      if (this.errors) return this.errors.first(name);
+      else return "";
     },
     isValid(name) {
       return this.validated && !this.errors.has(name);
-    }
+    },
+    efetuarLogin()
+    {
+      usuario.efetuarLogin(loginForm).then(resposta => {
+      console.log(resposta);
+      this.mensagemAPI = resposta.data.mensagem;
+      this.retornoAPI = resposta.data.sucesso;
+      this.idUsuario = resposta.data.idUsuario;
+    });    }
   }
 };
 </script>

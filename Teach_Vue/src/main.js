@@ -7,7 +7,7 @@ import App from './App.vue'
  import { VueSpinners } from '@saeris/vue-spinners'
  import './registerServiceWorker'
 
-// Vue.use(DashboardPlugin)
+Vue.use(DashboardPlugin)
  Vue.use(VueSpinners)
 
 // Set the base URL of the API

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Http.Cors;
 using Teach_API.Models;
 using Teach_API.Repositories;
 using Teach_API.Results;
@@ -16,6 +17,7 @@ namespace Teach_API.Controllers
     {
         [HttpGet]
         [Route("buscarRecomendacaoUsuarios")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public UsuarioPesquisaResult BuscarRecomendacoesUsuarios([FromHeader]int idUsuario)
         {
             var result = new UsuarioPesquisaResult();

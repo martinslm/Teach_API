@@ -11,13 +11,18 @@ namespace Teach_API.Services
     {
         public IList<UsuariosPesquisa> ObterRecomendacoesUsuarios(Usuario usuario)
         {
+            try
+            {
+                var repository = new PesquisaRepository();
 
-            var repository = new PesquisaRepository();
+                var usuarios = repository.ObterUsuariosCombinacao(usuario);
 
-            var usuarios = repository.ObterUsuariosCombinacao(usuario);
-
-            return new List<UsuariosPesquisa>();
-
+                return new ClusterService(usuarios, usuario).RealizarPesquisaAvancada();
+            }
+            catch
+            {
+                return new List<UsuariosPesquisa>();
+            }
         }
     }
 }

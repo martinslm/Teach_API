@@ -155,6 +155,10 @@
                   addon-left-icon="ni ni-books"
                 />
 
+                <select>
+                  <option value="teste">TESTE</option>
+                </select>
+
                 <base-input
                   v-validate="'required'"
                   v-model="registerForm.conversa"
@@ -249,12 +253,8 @@
   </div>
 </template>
 <script>
-
-
-
-
 import swal from "sweetalert2";
-import areaEstudo from '../../../services/areaestudo';
+import areaEstudo from "../../../services/areaestudo";
 import { mapState } from "vuex";
 
 export default {
@@ -279,14 +279,14 @@ export default {
       }
     };
   },
-  mounted(){
-//para testar o retorno
-  areaEstudo.listarAreasGerais().then(resposta => {
-console.log(resposta)
-//aqui os dados de retorno
-this.areasgerais = resposta.data.areasEstudo
-})
-},
+  mounted() {
+    //para testar o retorno
+    areaEstudo.listarAreasGerais().then(resposta => {
+      console.log(resposta);
+      //aqui os dados de retorno
+      this.areasgerais = resposta.data.areasEstudo;
+    });
+  },
   computed: {
     ...mapState({
       registerErrors: state => state.account.status.registerErrors,
@@ -311,14 +311,14 @@ this.areasgerais = resposta.data.areasEstudo
       });
     },
     getError(name) {
-      return this.errors.first(name);
+      if (this.errors) return this.errors.first(name);
+      else return "";
     },
     isValid(name) {
       return this.validated && !this.errors.has(name);
     }
   }
 };
-
 </script>
 <style scoped>
 </style>

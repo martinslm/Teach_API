@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Web.Http.Cors;
 using Teach_API.Models;
 using Teach_API.Repositories;
 using Teach_API.Repositories.Interfaces;
@@ -19,6 +20,7 @@ namespace Teach_API.Controllers
         //[RequireHttps]
         [HttpGet]
         [Route("fazerlogin")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public LoginResult FazerLogin([FromBody]LoginModel loginModel)
         {
             var result = new LoginResult();
@@ -38,6 +40,7 @@ namespace Teach_API.Controllers
 
         [HttpPost]
         [Route("cadastrar")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public CadastrarUsuarioResult CadastrarUsuario([FromBody]UsuarioModel dadosUsuario)
         {
             var result = new CadastrarUsuarioResult();
@@ -86,8 +89,9 @@ namespace Teach_API.Controllers
             return result;
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("alterar")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public AlterarDadosUsuarioResult AlterarUsuario([FromBody]UsuarioModel usuario)
         {
             var result = new AlterarDadosUsuarioResult();
