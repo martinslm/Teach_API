@@ -120,7 +120,7 @@ export default {
       },
       retornoAPI: "",
       mensagemAPI: true,
-      idUsuario = 0
+      idUsuario: 0
     };
   },
   computed: {
