@@ -255,6 +255,8 @@
 <script>
 import swal from "sweetalert2";
 import areaEstudo from "../../../services/areaestudo";
+import idioma from "../../../services/idioma";
+import universidade from "../../../services/universidade";
 import { mapState } from "vuex";
 
 export default {
@@ -267,13 +269,13 @@ export default {
         email: "",
         password: "",
         dateofbirth: "",
-        idiomamaterno: "",
-        idiomapratica: "",
+        idiomamaterno: [],
+        idiomapratica: [],
         areadominio: "",
         areaaprendizado: "",
         assuntoaprender: "",
         conversa: "",
-        universidade: "",
+        universidade: [],
         areaestudo: "",
         areasgerais: []
       }
@@ -285,6 +287,17 @@ export default {
       console.log(resposta);
       //aqui os dados de retorno
       this.areasgerais = resposta.data.areasEstudo;
+    });
+
+    universidade.listarUniversidades().then(resposta => {
+       console.log(resposta);
+       this.universidade = resposta.data.universidades;
+    });
+
+    idioma.listarIdiomas().then( resposta => {
+      console.log(resposta);
+      this.idiomamaterno = resposta.data.idiomas;
+      this.idiomapratica = resposta.data.idiomas;
     });
   },
   computed: {

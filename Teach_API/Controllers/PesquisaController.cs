@@ -16,7 +16,7 @@ namespace Teach_API.Controllers
     public class PesquisaController : ControllerBase
     {
         [HttpGet]
-        [Route("buscarRecomendacaoUsuarios")]
+        [Route("buscarRecomendacoesUsuarios")]
         [EnableCors(origins: "*", headers: "*", methods: "*")]
         public UsuarioPesquisaResult BuscarRecomendacoesUsuarios([FromHeader]int idUsuario)
         {

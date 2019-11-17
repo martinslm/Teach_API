@@ -74,10 +74,10 @@ namespace Teach_API.Repositories
                 connection.Open();
                 using (var command = new SqlCommand(sql, connection))
                 {
-                    command.Parameters.AddWithValue("@areaestudogeralaprendizado", dadosUsuario.AreaEstudoParaAprenderGeral);
-                    command.Parameters.AddWithValue("@idiomaAprendizado", dadosUsuario.IdiomaParaAprender);
-                    command.Parameters.AddWithValue("@idiomaDominio", dadosUsuario.IdiomaFluenteSecundario);
-                    command.Parameters.AddWithValue("@idiomaMaterno", dadosUsuario.IdiomaOrigem);
+                    command.Parameters.AddWithValue("@areaestudogeralaprendizado", dadosUsuario.AreaEstudoParaAprenderGeral.Id);
+                    command.Parameters.AddWithValue("@idiomaAprendizado", dadosUsuario.IdiomaParaAprender.Id);
+                    command.Parameters.AddWithValue("@idiomaDominio", dadosUsuario.IdiomaFluenteSecundario.Id);
+                    command.Parameters.AddWithValue("@idiomaMaterno", dadosUsuario.IdiomaOrigem.Id);
 
                     using (var reader = command.ExecuteReader())
                     {

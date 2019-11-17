@@ -83,7 +83,7 @@
                   type="primary"
                   size="lg"
                   class="my-4 btn-block"
-                  @click="efetuarLogin()"
+                  @click="efetuarLogin(loginForm)"
                 >Entrar</base-button>
               </div>
             </form>
@@ -161,14 +161,14 @@ export default {
     isValid(name) {
       return this.validated && !this.errors.has(name);
     },
-    efetuarLogin()
-    {
-      usuario.efetuarLogin(loginForm).then(resposta => {
-      console.log(resposta);
-      this.mensagemAPI = resposta.data.mensagem;
-      this.retornoAPI = resposta.data.sucesso;
-      this.idUsuario = resposta.data.idUsuario;
-    });    }
+    efetuarLogin(loginForm) {
+        console.log(loginForm.Login);
+        usuario.efetuarLogin(loginForm).then(resposta => {
+        this.mensagemAPI = resposta.data.mensagem;
+        this.retornoAPI = resposta.data.sucesso;
+        this.idUsuario = resposta.data.idUsuario;
+      });
+    }
   }
 };
 </script>
