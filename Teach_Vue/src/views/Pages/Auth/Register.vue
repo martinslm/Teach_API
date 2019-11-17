@@ -34,7 +34,9 @@
         <div class="col-lg-12 col-md-12">
           <div class="card bg-secondary border-0">
             <div class="card-header bg-transparent">
-              <div class="text-center mt-2 mb-2">Para criar sua conta, informe os dados abaixo</div>
+              <div class="text-center mt-2 mb-2">
+                Para criar sua conta, informe os dados abaixo
+              </div>
             </div>
             <div class="card-body px-lg-12 py-lg-12">
               <form class="needs-validation" @submit.prevent="handleSubmit">
@@ -116,18 +118,15 @@
                   addon-left-icon="ni ni-world"
                 />
 
-                <base-input
-                  v-validate="'required'"
-                  v-model="registerForm.areadominio"
-                  :error="getError('Área dominio')"
-                  :valid="isValid('Área dominio')"
-                  name="Área dominio"
-                  class="mb-3"
-                  prepend-icon="ni ni-hat-button"
-                  placeholder="Área de domínio"
-                  type="text"
-                  addon-left-icon="ni ni-hat-3"
-                />
+                <select
+                  >Escolha um item
+                  <option
+                    v-for="objeto in areasgerais"
+                    :key="objeto.id"
+                    :value="objeto.descricao"
+                    >{{ objeto.id }} - {{ objeto.descricao }}</option
+                  >
+                </select>
 
                 <base-input
                   v-validate="'required'"
@@ -154,10 +153,6 @@
                   type="select"
                   addon-left-icon="ni ni-books"
                 />
-
-                <select>
-                  <option value="teste">TESTE</option>
-                </select>
 
                 <base-input
                   v-validate="'required'"
@@ -228,7 +223,8 @@
                     native-type="submit"
                     size="lg"
                     class="mt-1 btn-block"
-                  >Registrar</base-button>
+                    >Registrar</base-button
+                  >
                 </div>
               </form>
             </div>
@@ -333,5 +329,4 @@ export default {
   }
 };
 </script>
-<style scoped>
-</style>
+<style scoped></style>
