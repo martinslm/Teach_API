@@ -162,12 +162,16 @@ export default {
       return this.validated && !this.errors.has(name);
     },
     efetuarLogin(loginForm) {
-        console.log(loginForm.Login);
         usuario.efetuarLogin(loginForm).then(resposta => {
         this.mensagemAPI = resposta.data.mensagem;
         this.retornoAPI = resposta.data.sucesso;
         this.idUsuario = resposta.data.idUsuario;
-      });
+      }
+      );
+      if(this.retornoAPI == false)
+      alert(this.mensagemAPI)
+      else
+      alert("redirecionar para a pagina correta aqui, passar o ID do usuario como parametro para a proxima tela porque vai precisar.");
     }
   }
 };

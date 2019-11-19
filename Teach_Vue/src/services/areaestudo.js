@@ -5,7 +5,7 @@ export default {
     return http.get("areaestudo/obterareasgerais");
   },
   listarAreasEspecificas: (idAreaGeral) => {
-    return http.get("areaestudo/obterareasgerais?" + idAreaGeral);
+    return http.get("areaestudo/obterareasgerais?idAreaGeral=" + idAreaGeral);
   }
 
 };

@@ -90,106 +90,48 @@
                   addon-left-icon="ni ni-calendar-grid-58"
                 />
 
-                <base-input
-                  v-validate="'required'"
-                  v-model="registerForm.idiomamaterno"
-                  :error="getError('Idioma materno')"
-                  :valid="isValid('Idioma materno')"
-                  name="Idioma materno"
-                  class="mb-3"
-                  prepend-icon="ni ni-book-button"
-                  placeholder="Idioma materno"
-                  type="select"
-                  addon-left-icon="ni ni-world"
-                />
+                <label>Selecione seu sexo:  </label> 
+                <select v-model="objetoAPI.Genero">
+                  Escolha um item
+                  <option
+                    v-for="objeto in registerForm.genero"
+                    :key="objeto.id"
+                    :value="objeto.id"
+                  >{{ objeto.descricao }}</option>
+                </select><br>
 
-                <base-input
-                  v-validate="'required'"
-                  v-model="registerForm.idiomapratica"
-                  :error="getError('Idioma pratica')"
-                  :valid="isValid('Idioma pratica')"
-                  name="Idioma pratica"
-                  class="mb-3"
-                  prepend-icon="ni ni-book-button"
-                  placeholder="Idioma que deseja praticar"
-                  type="text"
-                  addon-left-icon="ni ni-world"
-                />
-
-                <select v-on:change="onChange" v-model="testeEscolhaItem">
+                <label>Selecione uma área que você possua domínio para ensinar:  </label> 
+                <select v-on:change="AreaEstudoDominioSelecionada" v-model="objetoAPI.IdAreaEstudoGeralDominio">
                   Escolha um item
                   <option
                     v-for="objeto in registerForm.areasgerais"
                     :key="objeto.id"
                     :value="objeto.id"
-                  >{{ objeto.id }} - {{ objeto.descricao }}</option>
+                  >{{ objeto.descricao }}</option>
                 </select>
 
-                <base-input
-                  v-validate="'required'"
-                  v-model="registerForm.areaaprendizado"
-                  :error="getError('Área aprendizado')"
-                  :valid="isValid('Área aprendizado')"
-                  name="Área aprendizado"
-                  class="mb-3"
-                  prepend-icon="ni ni-hat-button"
-                  placeholder="Área de aprendizado"
-                  type="text"
-                  addon-left-icon="ni ni-collection"
-                />
+                <label><b>pendente criar função para exibir as especificas quando selecionado a dominio.</b></label></br>
+                <label>Selecione uma área que você gostaria de aprender:  </label> 
+                <select v-on:change="AreaEstudoDominioSelecionadaAprender" v-model="objetoAPI.IdAreaEstudoGeralAprendizado">
+                  Escolha um item
+                  <option
+                    v-for="objeto in registerForm.areasgerais"
+                    :key="objeto.id"
+                    :value="objeto.id"
+                  >{{ objeto.descricao }}</option>
 
-                <base-input
-                  v-validate="'required'"
-                  v-model="registerForm.areasgerais"
-                  :error="getError('Assunto que deseja aprender')"
-                  :valid="isValid('Assunto que deseja aprender')"
-                  name="Assunto que deseja aprender"
-                  class="mb-3"
-                  prepend-icon="ni ni-books-button"
-                  placeholder="Assunto que deseja aprender"
-                  type="select"
-                  addon-left-icon="ni ni-books"
-                />
-
-                <base-input
-                  v-validate="'required'"
-                  v-model="registerForm.conversa"
-                  :error="getError('Como deseja conversar')"
-                  :valid="isValid('Como deseja conversar')"
-                  name="Como deseja conversar"
-                  class="mb-3"
-                  prepend-icon="ni ni-chat-button"
-                  placeholder="Como deseja conversar?"
-                  type="text"
-                  addon-left-icon="ni ni-chat-round"
-                />
-
-                <base-input
-                  v-validate="'required'"
-                  v-model="registerForm.universidade"
-                  :error="getError('Universidade')"
-                  :valid="isValid('Universidade')"
-                  name="Universidade"
-                  class="mb-3"
-                  prepend-icon="ni ni-chat-button"
-                  placeholder="Universidade"
-                  type="text"
-                  addon-left-icon="ni ni-paper-diploma"
-                />
-
-                <base-input
-                  v-validate="'required'"
-                  v-model="registerForm.areaestudo"
-                  :error="getError('Área de estudo')"
-                  :valid="isValid('Área de estudo')"
-                  name="Área de estudo"
-                  class="mb-3"
-                  prepend-icon="ni ni-books-button"
-                  placeholder="Área de estudo"
-                  type="text"
-                  addon-left-icon="ni ni-books"
-                />
-
+                </select><label><b>criar função para exibir as especificas quando selecionado a aprendizado geral.</b></label></br>
+                
+                <label>Como você prefere conversar?  </label> 
+                <select v-model="objetoAPI.TipoIteracao">
+                  Escolha um item
+                  <option
+                    v-for="objeto in registerForm.preferenciaConversa"
+                    :key="objeto.id"
+                    :value="objeto.id"
+                  >{{ objeto.descricao }}</option>
+                </select>
+            
                 <!--
                 <div class="row my-4">
                   <div class="col-12">
@@ -255,19 +197,25 @@ export default {
   name: "Register",
   data() {
     return {
-      testeEscolhaItem: "",
+      objetoAPI: {
+      Genero: "",
+      IdAreaEstudoGeralDominio: "",
+      IdAreaEstudoGeralAprendizado: "",
+      TipoIteracao: ""
+      },
       triedSubmit: false,
       registerForm: {
         name: "",
         email: "",
         password: "",
         dateofbirth: "",
+        genero: [{id: 1, descricao: "Feminino"}, {id: 2, descricao: "Masculino"}, {id:3, descricao: "Indefinido"}],
         idiomamaterno: [],
         idiomapratica: [],
         areadominio: "",
         areaaprendizado: "",
         assuntoaprender: "",
-        conversa: "",
+        preferenciaConversa: [{id: 1, descricao: "Chat"}, {id: 2, descricao: "Voz"}, {id:3, descricao: "Video"}],
         universidade: [],
         areaestudo: "",
         areasgerais: []
@@ -317,8 +265,12 @@ export default {
       });
     },
 
-    onChange() {
-      alert(this.testeEscolhaItem);
+    AreaEstudoDominioSelecionada() {
+      alert(this.objetoAPI.IdAreaEstudoGeralDominio);
+    },
+    AreaEstudoDominioSelecionadaAprender()
+    {
+      alert(this.objetoAPI.IdAreaEstudoGeralAprendizado);
     },
     getError(name) {
       if (this.errors) return this.errors.first(name);
