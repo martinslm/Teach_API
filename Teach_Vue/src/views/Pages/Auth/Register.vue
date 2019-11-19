@@ -37,10 +37,10 @@
               <div class="text-center mt-2 mb-2">Para criar sua conta, informe os dados abaixo</div>
             </div>
             <div class="card-body px-lg-12 py-lg-12">
-              <form class="needs-validation" @submit.prevent="handleSubmit">
+              <form class="needs-validation">
                 <base-input
                   v-validate="'required|min:3|max:32'"
-                  v-model="registerForm.name"
+                  v-model="objetoAPI.Nome"
                   :error="getError('nome')"
                   :valid="isValid('nome')"
                   name="nome"
@@ -52,7 +52,7 @@
 
                 <base-input
                   v-validate="'required|email|min:12|max:64'"
-                  v-model="registerForm.email"
+                  v-model="objetoAPI.Email"
                   :error="getError('e-mail')"
                   :valid="isValid('e-mail')"
                   name="e-mail"
@@ -64,7 +64,7 @@
 
                 <base-input
                   v-validate="'required|min:8|max:64'"
-                  v-model="registerForm.password"
+                  v-model="objetoAPI.Senha"
                   :error="getError('senha')"
                   :valid="isValid('senha')"
                   name="senha"
@@ -79,7 +79,7 @@
 
                 <base-input
                   v-validate="'required'"
-                  v-model="registerForm.dateofbirth"
+                  v-model="objetoAPI.DataNascimento"
                   :error="getError('Data de Nascimento')"
                   :valid="isValid('Data de Nascimento')"
                   name="Data de Nascimento"
@@ -223,6 +223,7 @@
                     native-type="submit"
                     size="lg"
                     class="mt-1 btn-block"
+                    @click="registrarUsuario()"
                   >Registrar</base-button>
                 </div>
               </form>
@@ -252,6 +253,7 @@ import swal from "sweetalert2";
 import areaEstudo from "../../../services/areaestudo";
 import idioma from "../../../services/idioma";
 import universidadeService from "../../../services/universidade";
+import usuario from "../../../services/usuario";
 import { mapState } from "vuex";
 
 export default {
@@ -268,23 +270,21 @@ export default {
       IdIdiomaDominio: "",
       Universidade: "",
       IdAreaEstudoEspecificoDominio: "",
-      IdAreaEstudoEspecificoAprendizado: ""
+      IdAreaEstudoEspecificoAprendizado: "",
+      DataNascimento: "",
+      Senha: "",
+      Email: "",
+      Nome: ""
       },
       triedSubmit: false,
+      retornoAPI: "",
+      mensagemAPI: "",
       registerForm: {
-        name: "",
-        email: "",
-        password: "",
-        dateofbirth: "",
         genero: [{id: 1, descricao: "Feminino"}, {id: 2, descricao: "Masculino"}, {id:3, descricao: "Indefinido"}],
         idiomas: [],
         idiomapratica: [],
-        areadominio: "",
-        areaaprendizado: "",
-        assuntoaprender: "",
         preferenciaConversa: [{id: 1, descricao: "Chat"}, {id: 2, descricao: "Voz"}, {id:3, descricao: "Video"}],
         universidade: [],
-        areaestudo: "",
         areasgerais: [],
         areasespecificasdominio: [],
         areasespeficiasaprendizado: []
@@ -351,6 +351,21 @@ export default {
     },
     isValid(name) {
       return this.validated && !this.errors.has(name);
+    },
+    registrarUsuario(){
+      usuario.cadastrarUsuario(this.objetoAPI).then(resposta => {
+        console.log(resposta);
+        this.mensagemAPI = resposta.data.mensagem;
+        this.retornoAPI = resposta.data.sucesso;
+
+        if(this.retornoAPI)
+        {
+        alert("Usuário cadastrado com sucesso.");
+        window.location.href = "/Login";
+        }
+        else
+        alert(this.mensagemAPI);
+      });
     }
   }
 };

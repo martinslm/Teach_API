@@ -167,9 +167,9 @@ export default {
         this.retornoAPI = resposta.data.sucesso;
         this.idUsuario = resposta.data.idUsuario;
 
-        if (this.retornoAPI == false) alert(this.mensagemAPI);
+        if (this.retornoAPI) alert(this.mensagemAPI);
         else
-         window.location.href = "/Register";
+         window.location.href = "../Dashboard/UserProfile"; //incluir aqui a página que deve ser redirecionado após o login. Anderson
       });
     }
   }
