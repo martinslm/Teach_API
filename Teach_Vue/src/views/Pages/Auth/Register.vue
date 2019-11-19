@@ -100,6 +100,46 @@
                   >{{ objeto.descricao }}</option>
                 </select><br>
 
+                <label>Qual seu idioma natal? </label> 
+                <select v-model="objetoAPI.IdIdiomaOrigem">
+                  Escolha um item
+                  <option
+                    v-for="objeto in registerForm.idiomas"
+                    :key="objeto.id"
+                    :value="objeto.id"
+                  >{{ objeto.descricao }}</option>
+                </select><br>
+
+                <label>Selecione um segundo idioma (Se você não fala outro idioma, selecione o seu idioma natal): </label> 
+                <select v-model="objetoAPI.IdIdiomaDominio">
+                  Escolha um item
+                  <option
+                    v-for="objeto in registerForm.idiomas"
+                    :key="objeto.id"
+                    :value="objeto.id"
+                  >{{ objeto.descricao }}</option>
+                </select><br>
+
+                <label>Qual idioma você deseja praticar? </label> 
+                <select v-model="objetoAPI.IdIdiomaAprendizado">
+                  Escolha um item
+                  <option
+                    v-for="objeto in registerForm.idiomas"
+                    :key="objeto.id"
+                    :value="objeto.id"
+                  >{{ objeto.descricao }}</option>
+                </select><br>
+
+                <label>Onde você estuda? </label> 
+                <select v-model="objetoAPI.Universidade">
+                  Escolha um item
+                  <option
+                    v-for="objeto in registerForm.universidade"
+                    :key="objeto.id"
+                    :value="objeto.id"
+                  >{{ objeto.descricao }}</option>
+                </select><br>
+
                 <label>Selecione uma área que você possua domínio para ensinar:  </label> 
                 <select v-on:change="AreaEstudoDominioSelecionada" v-model="objetoAPI.IdAreaEstudoGeralDominio">
                   Escolha um item
@@ -108,9 +148,19 @@
                     :key="objeto.id"
                     :value="objeto.id"
                   >{{ objeto.descricao }}</option>
-                </select>
+                </select><br>
 
-                <label><b>pendente criar função para exibir as especificas quando selecionado a dominio.</b></label></br>
+                <div  v-show="objetoAPI.IdAreaEstudoGeralDominio != ''">
+                <label>Dentro dessa área, qual assunto você mais domina? </label> 
+                <select v-model="objetoAPI.IdAreaEstudoEspecificoDominio">
+                  Escolha um item
+                  <option
+                    v-for="objeto in registerForm.areasespecificasdominio"
+                    :key="objeto.id"
+                    :value="objeto.id"
+                  >{{ objeto.descricao }}</option>
+                </select><br></div>
+
                 <label>Selecione uma área que você gostaria de aprender:  </label> 
                 <select v-on:change="AreaEstudoDominioSelecionadaAprender" v-model="objetoAPI.IdAreaEstudoGeralAprendizado">
                   Escolha um item
@@ -119,9 +169,20 @@
                     :key="objeto.id"
                     :value="objeto.id"
                   >{{ objeto.descricao }}</option>
+                </select>
 
-                </select><label><b>criar função para exibir as especificas quando selecionado a aprendizado geral.</b></label></br>
-                
+                <div  v-show="objetoAPI.IdAreaEstudoGeralAprendizado != ''">
+                <label>Dentro dessa área, qual assunto você tem mais interesse? </label> 
+                <select v-model="objetoAPI.IdAreaEstudoEspecificoAprendizado">
+                  Escolha um item
+                  <option
+                    v-for="objeto in registerForm.areasespeficiasaprendizado"
+                    :key="objeto.id"
+                    :value="objeto.id"
+                  >{{ objeto.descricao }}</option>
+                </select><br></div>
+
+                <br>
                 <label>Como você prefere conversar?  </label> 
                 <select v-model="objetoAPI.TipoIteracao">
                   Escolha um item
@@ -201,7 +262,13 @@ export default {
       Genero: "",
       IdAreaEstudoGeralDominio: "",
       IdAreaEstudoGeralAprendizado: "",
-      TipoIteracao: ""
+      TipoIteracao: "",
+      IdIdiomaOrigem: "",
+      IdIdiomaAprendizado: "",
+      IdIdiomaDominio: "",
+      Universidade: "",
+      IdAreaEstudoEspecificoDominio: "",
+      IdAreaEstudoEspecificoAprendizado: ""
       },
       triedSubmit: false,
       registerForm: {
@@ -210,7 +277,7 @@ export default {
         password: "",
         dateofbirth: "",
         genero: [{id: 1, descricao: "Feminino"}, {id: 2, descricao: "Masculino"}, {id:3, descricao: "Indefinido"}],
-        idiomamaterno: [],
+        idiomas: [],
         idiomapratica: [],
         areadominio: "",
         areaaprendizado: "",
@@ -218,7 +285,9 @@ export default {
         preferenciaConversa: [{id: 1, descricao: "Chat"}, {id: 2, descricao: "Voz"}, {id:3, descricao: "Video"}],
         universidade: [],
         areaestudo: "",
-        areasgerais: []
+        areasgerais: [],
+        areasespecificasdominio: [],
+        areasespeficiasaprendizado: []
       }
     };
   },
@@ -232,13 +301,12 @@ export default {
 
     universidadeService.listarUniversidades().then(resposta => {
       console.log(resposta);
-      this.universidade = resposta.data.universidades;
+      this.registerForm.universidade = resposta.data.universidades;
     });
 
     idioma.listarIdiomas().then(resposta => {
       console.log(resposta);
-      this.idiomamaterno = resposta.data.idiomas;
-      this.idiomapratica = resposta.data.idiomas;
+      this.registerForm.idiomas = resposta.data.idiomas;
     });
   },
   computed: {
@@ -266,11 +334,16 @@ export default {
     },
 
     AreaEstudoDominioSelecionada() {
-      alert(this.objetoAPI.IdAreaEstudoGeralDominio);
+       areaEstudo.listarAreasEspecificas(this.objetoAPI.IdAreaEstudoGeralDominio).then(resposta => {
+      this.registerForm.areasespecificasdominio = resposta.data.areasEstudo;
+
+    });
     },
     AreaEstudoDominioSelecionadaAprender()
     {
-      alert(this.objetoAPI.IdAreaEstudoGeralAprendizado);
+      areaEstudo.listarAreasEspecificas(this.objetoAPI.IdAreaEstudoGeralAprendizado).then(resposta => {
+      this.registerForm.areasespeficiasaprendizado = resposta.data.areasEstudo;
+    });
     },
     getError(name) {
       if (this.errors) return this.errors.first(name);

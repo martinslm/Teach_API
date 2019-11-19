@@ -30,7 +30,7 @@ namespace Teach_API.Controllers
         [HttpGet]
         [Route("obterareasespecificas")]
         [EnableCors(origins: "*", headers: "*", methods: "*")]
-        public AreaEstudoResult ObterAreasEspecificas([FromHeader]int idAreaGeral)
+        public AreaEstudoResult ObterAreasEspecificas([FromQuery]int idAreaGeral)
         {
             var result = new AreaEstudoResult();
 
