@@ -18,7 +18,7 @@ namespace Teach_API.Controllers
         //    _usuarioRepository = usuarioRepository;
         //}
         //[RequireHttps]
-        [HttpGet]
+        [HttpPost]
         [Route("fazerlogin")]
         [EnableCors(origins: "*", headers: "*", methods: "*")]
         public LoginResult FazerLogin([FromBody]LoginModel loginModel)
@@ -49,8 +49,8 @@ namespace Teach_API.Controllers
                 return result;
 
             var repository = new UsuarioRepository();
-         
-            if(repository.ValidarContaExistente(dadosUsuario.Email))
+
+            if (repository.ValidarContaExistente(dadosUsuario.Email))
             {
                 result.Mensagem.Add("Já existe um usuário cadastrado para o e-mail informado.");
                 return result;
@@ -58,7 +58,7 @@ namespace Teach_API.Controllers
 
             result.IdUsuario = repository.CadastrarUsuario(dadosUsuario);
 
-            if(result.IdUsuario == 0)
+            if (result.IdUsuario == 0)
             {
                 result.Mensagem.Add("Não foi possível cadastrar o usuário informado, houve um erro ao realizar a operação.");
                 return result;
@@ -81,7 +81,7 @@ namespace Teach_API.Controllers
 
             var repository = new UsuarioRepository();
 
-           result.Usuario = repository.ObterDadosUsuario(idUsuario);
+            result.Usuario = repository.ObterDadosUsuario(idUsuario);
 
             if (result.Usuario == new Usuario())
                 result.Mensagem.Add(string.Format("Não foi possível localizar o usuário informado. Id {0}", idUsuario));
@@ -96,15 +96,15 @@ namespace Teach_API.Controllers
         {
             var result = new AlterarDadosUsuarioResult();
 
-            if(!result.ValidarModel(usuario))
+            if (!result.ValidarModel(usuario))
                 return result;
 
             var repository = new UsuarioRepository();
 
             var sucesso = repository.AtualizarDadosUsuario(usuario);
 
-            if(!sucesso)
-            result.Mensagem.Add("Não foi possível atualizar os dados do usuário. Houve um ou mais erros ao realizar a operação.");
+            if (!sucesso)
+                result.Mensagem.Add("Não foi possível atualizar os dados do usuário. Houve um ou mais erros ao realizar a operação.");
 
             return result;
         }

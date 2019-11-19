@@ -34,9 +34,7 @@
         <div class="col-lg-12 col-md-12">
           <div class="card bg-secondary border-0">
             <div class="card-header bg-transparent">
-              <div class="text-center mt-2 mb-2">
-                Para criar sua conta, informe os dados abaixo
-              </div>
+              <div class="text-center mt-2 mb-2">Para criar sua conta, informe os dados abaixo</div>
             </div>
             <div class="card-body px-lg-12 py-lg-12">
               <form class="needs-validation" @submit.prevent="handleSubmit">
@@ -118,14 +116,13 @@
                   addon-left-icon="ni ni-world"
                 />
 
-                <select
-                  >Escolha um item
+                <select v-on:change="onChange" v-model="testeEscolhaItem">
+                  Escolha um item
                   <option
-                    v-for="objeto in areasgerais"
+                    v-for="objeto in registerForm.areasgerais"
                     :key="objeto.id"
-                    :value="objeto.descricao"
-                    >{{ objeto.id }} - {{ objeto.descricao }}</option
-                  >
+                    :value="objeto.id"
+                  >{{ objeto.id }} - {{ objeto.descricao }}</option>
                 </select>
 
                 <base-input
@@ -223,8 +220,7 @@
                     native-type="submit"
                     size="lg"
                     class="mt-1 btn-block"
-                    >Registrar</base-button
-                  >
+                  >Registrar</base-button>
                 </div>
               </form>
             </div>
@@ -252,13 +248,14 @@
 import swal from "sweetalert2";
 import areaEstudo from "../../../services/areaestudo";
 import idioma from "../../../services/idioma";
-import universidade from "../../../services/universidade";
+import universidadeService from "../../../services/universidade";
 import { mapState } from "vuex";
 
 export default {
   name: "Register",
   data() {
     return {
+      testeEscolhaItem: "",
       triedSubmit: false,
       registerForm: {
         name: "",
@@ -282,15 +279,15 @@ export default {
     areaEstudo.listarAreasGerais().then(resposta => {
       console.log(resposta);
       //aqui os dados de retorno
-      this.areasgerais = resposta.data.areasEstudo;
+      this.registerForm.areasgerais = resposta.data.areasEstudo;
     });
 
-    universidade.listarUniversidades().then(resposta => {
-       console.log(resposta);
-       this.universidade = resposta.data.universidades;
+    universidadeService.listarUniversidades().then(resposta => {
+      console.log(resposta);
+      this.universidade = resposta.data.universidades;
     });
 
-    idioma.listarIdiomas().then( resposta => {
+    idioma.listarIdiomas().then(resposta => {
       console.log(resposta);
       this.idiomamaterno = resposta.data.idiomas;
       this.idiomapratica = resposta.data.idiomas;
@@ -318,6 +315,10 @@ export default {
         buttonsStyling: false,
         confirmButtonClass: "btn btn-success btn-fill"
       });
+    },
+
+    onChange() {
+      alert(this.testeEscolhaItem);
     },
     getError(name) {
       if (this.errors) return this.errors.first(name);
