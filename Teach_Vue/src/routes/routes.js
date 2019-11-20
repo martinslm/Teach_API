@@ -8,6 +8,7 @@ const Dashboard = () => import(/* webpackChunkName: "page" */ '@/views/Pages/Das
 const Home = () => import(/* webpackChunkName: "pages" */ '@/views/Pages/Home.vue')
 const Login = () => import(/* webpackChunkName: "pages" */ '@/views/Pages/Auth/Login.vue')
 const Register = () => import(/* webpackChunkName: "pages" */ '@/views/Pages/Auth/Register.vue')
+const UserProfile = () => import(/* webpackChunkName: "page" */ '@/views/Pages/Dashboard/UserProfile.vue')
 
 const dashboardPages = {
     path: '/',
@@ -59,6 +60,15 @@ const authPages = {
             component: Register,
             meta: {
                 title: 'Registrar - Teach',
+                redirectToDashboardIfConnected: true
+            }
+        },
+        {
+            path: '/userProfile',
+            name: 'UserProfile',
+            component: UserProfile,
+            meta: {
+                title: 'Perfil - Teach',
                 redirectToDashboardIfConnected: true
             }
         },
