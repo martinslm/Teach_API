@@ -21,7 +21,7 @@
             <thead>
                 <tr>
                     <th width="20%">Nome</th>
-                    <th width="16%">Data Nascimento</th>
+                    <th width="16%">Idade</th>
                     <th width="20%">Idiomas</th>
                     <th width="20%">Dominínio sobre</th>
                     <th width="20%">Quer aprender sobre</th>
@@ -34,7 +34,7 @@
                 
                 <tr>
                 <th width="20%">{{objeto.nome}}</th>
-                <th width="16%">{{objeto.dataNascimento}}</th>
+                <th width="16%">{{calcula(objeto.dataNascimento)}}</th>
                 <th width="20%">{{objeto.idiomaOrigem.descricao}}, {{objeto.idiomaParaAprender.descricao}} e {{objeto.idiomaFluenteSecundario.descricao}}</th>
                 <th width="20%">{{objeto.areaEstudoDominioGeral.descricao}} - {{objeto.areaEstudoDominioEspecifica.descricao}}</th>
                 <th width="20%">{{objeto.areaEstudoParaAprenderGeral.descricao}} - {{objeto.areaEstudoParaAprenderEspecifico.descricao}}</th>
@@ -119,8 +119,23 @@ export default {
   data() {
     return {
      sugestaoUsuarios: [],
-     idUsuario: ""
+     idUsuario: "",
+     dataAtual: new Date()
     };
+  },
+  methods: {
+      calcula(dobString) {
+
+                        var dob = new Date(dobString);
+                var currentDate = new Date();
+                var currentYear = currentDate.getFullYear();
+                var birthdayThisYear = new Date(currentYear, dob.getMonth(), dob.getDate());
+                var age = currentYear - dob.getFullYear();
+                if(birthdayThisYear > currentDate) {
+                    age--;
+                }
+                return age;
+                }
   },
   mounted() {
 
