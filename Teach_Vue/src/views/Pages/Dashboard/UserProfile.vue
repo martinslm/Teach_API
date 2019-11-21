@@ -21,8 +21,7 @@
             <thead>
                 <tr>
                     <th width="20%">Nome</th>
-                    <th width="8%">Idade</th>
-                    <th width="8%">Sexo</th>
+                    <th width="16%">Data Nascimento</th>
                     <th width="20%">Idiomas</th>
                     <th width="20%">Dominínio sobre</th>
                     <th width="20%">Quer aprender sobre</th>
@@ -30,17 +29,20 @@
                 </tr>
             </thead>
             <tbody>
+
                 <template v-for="objeto in sugestaoUsuarios">
+                
                 <tr>
                 <th width="20%">{{objeto.nome}}</th>
-                <th width="8%">Idade</th>
-                <th width="8%">Sexo</th>
-                <th width="20%">Idiomas</th>
-                <th width="20%">Dominínio sobre</th>
-                <th width="20%">Assunto Geral: {{objeto.areaEstudoParaAprenderGeral.descricao}} Assunto Especifico: {{objeto.areaEstudoParaAprenderEspecifico.descricao}}</th>
+                <th width="16%">{{objeto.dataNascimento}}</th>
+                <th width="20%">{{objeto.idiomaOrigem.descricao}}, {{objeto.idiomaParaAprender.descricao}} e {{objeto.idiomaFluenteSecundario.descricao}}</th>
+                <th width="20%">{{objeto.areaEstudoDominioGeral.descricao}} - {{objeto.areaEstudoDominioEspecifica.descricao}}</th>
+                <th width="20%">{{objeto.areaEstudoParaAprenderGeral.descricao}} - {{objeto.areaEstudoParaAprenderEspecifico.descricao}}</th>
                 <th width="4%"></th>
                 </tr>
+
                 </template>
+
             </tbody>
         </table>
     </div>
@@ -108,15 +110,29 @@
     </div>
 </template>
 <script>
-  export default {
-    name: 'user-profile',
-    data() {
-      return {
-        model: {
-          sugestaoUsuarios: []
-        }
-      }
-    },
-  };
+import swal from "sweetalert2";
+import pesquisa from "../../../services/sugestoes";
+import { mapState } from "vuex";
+
+export default {
+  name: "Register",
+  data() {
+    return {
+     sugestaoUsuarios: [],
+     idUsuario: ""
+    };
+  },
+  mounted() {
+
+    this.idUsuario = localStorage.getItem("idusuario"); 
+
+     pesquisa.obterSugestoes(this.idUsuario).then(resposta => {
+      console.log(resposta);
+      //aqui os dados de retorno
+      this.sugestaoUsuarios = resposta.data.usuariosRecomendados;
+    });
+  }
+};
+
 </script>
 <style></style>

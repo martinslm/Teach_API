@@ -220,7 +220,6 @@
                   <base-button
                     :disabled="registering"
                     type="primary"
-                    native-type="submit"
                     size="lg"
                     class="mt-1 btn-block"
                     @click="registrarUsuario()"
@@ -353,7 +352,10 @@ export default {
       return this.validated && !this.errors.has(name);
     },
     registrarUsuario(){
-      usuario.cadastrarUsuario(this.objetoAPI).then(resposta => {
+
+      var retorno = usuario.cadastrarUsuario(this.objetoAPI);
+
+      retorno.then(resposta => {
         console.log(resposta);
         this.mensagemAPI = resposta.data.mensagem;
         this.retornoAPI = resposta.data.sucesso;

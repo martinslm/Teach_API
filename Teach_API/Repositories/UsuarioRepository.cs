@@ -244,7 +244,7 @@ namespace Teach_API.Repositories
                         command.Parameters.AddWithValue("@nomeUsuario", usuario.Nome);
                         command.Parameters.AddWithValue("@senha", usuario.Senha);
                         command.Parameters.AddWithValue("@dataNascimento", usuario.DataNascimento);
-                        command.Parameters.AddWithValue("@genero", (int)usuario.Genero);
+                        command.Parameters.AddWithValue("@genero",(int)usuario.Genero);
                         command.Parameters.AddWithValue("@caminhofoto", usuario.CaminhoFoto );
                         command.Parameters.AddWithValue("@idiomaMaterno", usuario.IdIdiomaOrigem);
                         command.Parameters.AddWithValue("@idiomaPraticar", usuario.IdIdiomaAprendizado);
