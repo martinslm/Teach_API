@@ -11,10 +11,12 @@
         <div class="row">
           <div class="col-lg-7 col-md-10">
             <h1 class="display-2 text-white">Olá</h1>
-            <p
-              class="text-white mt-0 mb-5"
-            >Esta é sua página, onde você pode ver o progresso e gerenciar seus cursos</p>
-            <a href="#!" class="btn btn-info">Editar perfil</a>
+            <router-link class="nav-link nav-link-icon" to="/register">
+              <p
+                class="text-white mt-0 mb-5"
+              >Esta é sua página, onde você pode ver o progresso e gerenciar seus cursos</p>
+              <a href="#!" class="btn btn-info">Editar perfil</a>
+            </router-link>
           </div>
         </div>
       </div>

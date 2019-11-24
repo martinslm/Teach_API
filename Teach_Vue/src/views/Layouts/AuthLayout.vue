@@ -54,6 +54,18 @@
               <span class="nav-link-inner--text">Login</span>
             </router-link>
           </li>
+          <div class="media align-items-center" slot="title">
+            <span class="avatar avatar-sm rounded-circle">
+              <img alt="Image placeholder" src="img/theme/team-4-800x800.jpg" />
+            </span>
+          </div>
+          <!--
+          <li class="nav-item">
+            <router-link class="nav-link nav-link-icon" to="/login">
+              <i class="ni ni-key-25"></i>
+              <span class="nav-link-inner--text">Sair</span>
+            </router-link>
+          </li>-->
           <!--
                     <li class="nav-item">
                         <router-link class="nav-link nav-link-icon" to="/profile">
@@ -104,7 +116,7 @@
             <div class="copyright text-center text-xl-left text-muted">
               &copy; {{year}}
               <a
-                href="https://www.creative-tim.com"
+                href="https://www.teach.com.br"
                 class="font-weight-bold ml-1"
                 target="_blank"
               >Teach</a>
@@ -113,11 +125,11 @@
           <div class="col-xl-6">
             <ul class="nav nav-footer justify-content-center justify-content-xl-end">
               <li class="nav-item">
-                <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Teach</a>
+                <a href="https://www.teach.com.br" class="nav-link" target="_blank">Teach</a>
               </li>
               <li class="nav-item">
                 <a
-                  href="https://www.creative-tim.com/presentation"
+                  href="https://www.teach.com.br/sobrenos"
                   class="nav-link"
                   target="_blank"
                 >Sobre nós</a>
