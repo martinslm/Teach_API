@@ -63,6 +63,13 @@
                 />
 
                 <base-input
+                  v-model="objetoAPI.Telefone"
+                  name="telefone"
+                  class="mb-3"
+                  placeholder="Telefone"
+                />
+
+                <base-input
                   v-validate="'required|min:8|max:64'"
                   v-model="objetoAPI.Senha"
                   :error="getError('senha')"
@@ -273,7 +280,8 @@ export default {
       DataNascimento: "",
       Senha: "",
       Email: "",
-      Nome: ""
+      Nome: "",
+      Telefone: ""
       },
       triedSubmit: false,
       retornoAPI: "",

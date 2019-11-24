@@ -35,7 +35,8 @@ namespace Teach_API.Repositories
                                             area_estudo_especifico_dominio,
                                             area_estudo_geral_aprendizado, 
                                             area_estudo_especifico_aprendizado, 
-                                            preferencia_conversa)
+                                            preferencia_conversa,
+                                            telefone)
                                     VALUES (
                                             @email, 
                                             @nomeusuario, 
@@ -51,7 +52,8 @@ namespace Teach_API.Repositories
                                             @areaestudoespecificodominio, 
                                             @areaestudogeralaprendizado, 
                                             @areaestudoespecificoaprendizado, 
-                                            @preferenciaconversa
+                                            @preferenciaconversa,
+                                            @telefone
                                             )
 
            SELECT IDENT_CURRENT('usuario') AS id_usuario";
@@ -68,7 +70,7 @@ namespace Teach_API.Repositories
                         command.Parameters.AddWithValue("@senha", usuario.Senha);
                         command.Parameters.AddWithValue("@datanascimento", usuario.DataNascimento);
                         command.Parameters.AddWithValue("@genero", (int)usuario.Genero);
-                        command.Parameters.AddWithValue("@caminhofoto", usuario.CaminhoFoto ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@caminhofoto", (object)usuario.CaminhoFoto ?? DBNull.Value);
                         command.Parameters.AddWithValue("@idiomaMaterno", usuario.IdIdiomaOrigem);
                         command.Parameters.AddWithValue("@idiomaPraticar", usuario.IdIdiomaAprendizado);
                         command.Parameters.AddWithValue("@idiomaFluente", usuario.IdIdiomaDominio);
@@ -78,6 +80,7 @@ namespace Teach_API.Repositories
                         command.Parameters.AddWithValue("@areaestudogeralaprendizado", usuario.IdAreaEstudoGeralAprendizado);
                         command.Parameters.AddWithValue("@areaestudoespecificoaprendizado", usuario.IdAreaEstudoEspecificoAprendizado);
                         command.Parameters.AddWithValue("@preferenciaconversa", (int)usuario.TipoIteracao);
+                        command.Parameters.AddWithValue("@telefone", usuario.Telefone);
 
                         using (var reader = command.ExecuteReader())
                         {
