@@ -8,6 +8,7 @@ namespace Teach_API.Models
         public long Id { get; set; }
         public string CaminhoFoto { get; set; }
         public string Nome { get; set; }
+        public string Telefone { get; set; }
         public Genero Genero { get; set; }
         public DateTime DataNascimento { get; set; }
         public Idioma IdiomaOrigem { get; set; }

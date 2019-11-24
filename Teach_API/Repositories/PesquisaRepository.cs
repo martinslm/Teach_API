@@ -34,6 +34,7 @@ namespace Teach_API.Repositories
 	                            ,u.email AS email
 	                            ,u.senha AS senha
 	                            ,u.genero AS genero
+                                ,u.telefone AS telefone
 	                            ,u.data_nascimento AS dataNascimento
 	                            ,u.preferencia_conversa AS preferenciaConversa
 	                            ,un.id_universidade AS idUniversidade

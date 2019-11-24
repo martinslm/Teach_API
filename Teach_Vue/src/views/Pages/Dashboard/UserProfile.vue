@@ -52,7 +52,7 @@
                 width="20%"
               >{{objeto.areaEstudoParaAprenderGeral.descricao}} - {{objeto.areaEstudoParaAprenderEspecifico.descricao}}</th>
               <th>
-                <a href="#!" class="btn btn-info" @click="enviarMensagem(5547997176359)">Enviar mensagem</a>
+                <a href="#!" class="btn btn-info" @click="enviarMensagem(objeto.telefone)">Enviar mensagem</a>
               </th>
             </tr>
           </template>
