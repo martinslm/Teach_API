@@ -68,7 +68,7 @@ namespace Teach_API.Repositories
                         command.Parameters.AddWithValue("@senha", usuario.Senha);
                         command.Parameters.AddWithValue("@datanascimento", usuario.DataNascimento);
                         command.Parameters.AddWithValue("@genero", (int)usuario.Genero);
-                        command.Parameters.AddWithValue("@caminhofoto", usuario.CaminhoFoto);
+                        command.Parameters.AddWithValue("@caminhofoto", usuario.CaminhoFoto ?? DBNull.Value);
                         command.Parameters.AddWithValue("@idiomaMaterno", usuario.IdIdiomaOrigem);
                         command.Parameters.AddWithValue("@idiomaPraticar", usuario.IdIdiomaAprendizado);
                         command.Parameters.AddWithValue("@idiomaFluente", usuario.IdIdiomaDominio);

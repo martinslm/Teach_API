@@ -50,7 +50,7 @@
                 width="20%"
               >{{objeto.areaEstudoParaAprenderGeral.descricao}} - {{objeto.areaEstudoParaAprenderEspecifico.descricao}}</th>
               <th>
-                <a href="#!" class="btn btn-info">Enviar mensagem</a>
+                <a href="#!" class="btn btn-info" @click="enviarMensagem(5547997176359)">Enviar mensagem</a>
               </th>
             </tr>
           </template>
@@ -133,6 +133,11 @@ export default {
     };
   },
   methods: {
+    enviarMensagem(numero){
+
+       window.location.href = "https://api.whatsapp.com/send?l=pt&phone=" + numero;
+
+    },
     calcula(dobString) {
       var dob = new Date(dobString);
       var currentDate = new Date();
