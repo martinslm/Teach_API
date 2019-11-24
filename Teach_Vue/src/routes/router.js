@@ -23,7 +23,7 @@ router.beforeEach((to, from, next) => {
 
   // se o usuário estiver conectado, redirecione - o para o painel
   if (to.matched.some(record => record.meta.redirectToDashboardIfConnected)) {
-    if (store.getters["account/isLoggedIn"]) return router.push("/home");
+    if (store.getters["account/isLoggedIn"]) return router.push("/UserProfile");
   }
 
   // se o usuário não estiver conectado, redirecione - o para fazer login

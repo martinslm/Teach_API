@@ -22,20 +22,11 @@ const UserProfile = () =>
 const dashboardPages = {
   path: "/",
   component: DashboardLayout,
-  redirect: "/dashboard",
-  name: "Dashboard Layout",
+  name: "Dashboard",
   meta: {
-    requiresAuth: false
+    requiresAuth: true
   },
   children: [
-    {
-      path: "dashboard",
-      name: "Dashboard",
-      component: Dashboard,
-      meta: {
-        title: "Dashboard - Teach"
-      }
-    },
     {
       path: "/userProfile",
       name: "UserProfile",
@@ -78,16 +69,6 @@ const authPages = {
       component: Register,
       meta: {
         title: "Registrar - Teach",
-        redirectToDashboardIfConnected: true
-      }
-    },
-
-    {
-      path: "/posts",
-      name: "posts",
-      component: UserProfile,
-      meta: {
-        title: "Mensagens",
         redirectToDashboardIfConnected: true
       }
     },

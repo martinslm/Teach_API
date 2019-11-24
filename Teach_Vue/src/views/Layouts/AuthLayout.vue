@@ -54,11 +54,6 @@
               <span class="nav-link-inner--text">Login</span>
             </router-link>
           </li>
-          <div class="media align-items-center" slot="title">
-            <span class="avatar avatar-sm rounded-circle">
-              <img alt="Image placeholder" src="img/theme/team-4-800x800.jpg" />
-            </span>
-          </div>
           <!--
           <li class="nav-item">
             <router-link class="nav-link nav-link-icon" to="/login">

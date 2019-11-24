@@ -40,7 +40,7 @@
             <div class="text-center mt-2 mb-2">Entre com sua conta</div>
           </div>
           <div class="card-body px-lg-5 py-lg-5">
-            <form role="form">
+            <form role="form" @submit.prevent="handleSubmit">
               <base-input
                 v-validate="'required|email|min:12|max:64'"
                 v-model="loginForm.Login"
@@ -81,6 +81,7 @@
                 <base-button
                   :disabled="loggingIn"
                   type="primary"
+                  native-type="submit"
                   size="lg"
                   class="my-4 btn-block"
                   @click="efetuarLogin(loginForm)"
