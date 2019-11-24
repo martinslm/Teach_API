@@ -65,9 +65,9 @@
                 placeholder="Senha"
                 addon-left-icon="ni ni-lock-circle-open"
               />
-
+              <!--
               <base-checkbox v-model="loginForm.rememberMe">Lembrar-me</base-checkbox>
-
+              
               <api-errors :single-error="loginError" :alert-classes="'mt-4 py-3 mb-1'" />
 
               <div v-if="userId" class="mt-3 text-center">
@@ -76,7 +76,7 @@
                   <br />Clique aqui para reenviá-lo.
                 </p>
               </div>
-
+              -->
               <div class="text-center">
                 <base-button
                   :disabled="loggingIn"
@@ -90,14 +90,9 @@
           </div>
         </div>
         <div class="row mt-3">
-          <div class="col-6">
-            <router-link to="/password-reset" class="text-light">
-              <small>Esqueceu a senha ?</small>
-            </router-link>
-          </div>
-          <div class="col-6 text-right">
+          <div class="col-12 text-center">
             <router-link to="/register" class="text-light">
-              <small>Crie uma conta</small>
+              <small>Ainda não possui uma conta? Crie uma conta</small>
             </router-link>
           </div>
         </div>
@@ -168,10 +163,9 @@ export default {
         this.idUsuario = resposta.data.idUsuario;
 
         if (!this.retornoAPI) alert(this.mensagemAPI);
-        else
-        localStorage.setItem("idusuario", this.idUsuario)
+        else localStorage.setItem("idusuario", this.idUsuario);
 
-         window.location.href = "/UserProfile"; //incluir aqui a página que deve ser redirecionado após o login. Anderson
+        window.location.href = "/UserProfile"; //incluir aqui a página que deve ser redirecionado após o login. Anderson
       });
     }
   }

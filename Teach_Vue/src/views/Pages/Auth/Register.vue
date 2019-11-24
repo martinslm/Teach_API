@@ -86,7 +86,7 @@
                   class="mb-3"
                   prepend-icon="ni ni-date-button"
                   placeholder="Idade"
-                  type="number"
+                  type="date"
                   addon-left-icon="ni ni-calendar-grid-58"
                 />
 
