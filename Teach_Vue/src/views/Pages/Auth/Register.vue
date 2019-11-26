@@ -34,7 +34,9 @@
         <div class="col-lg-12 col-md-12">
           <div class="card bg-secondary border-0">
             <div class="card-header bg-transparent">
-              <div class="text-center mt-2 mb-2">Para criar sua conta, informe os dados abaixo</div>
+              <div class="text-center mt-2 mb-2">
+                Para criar sua conta, informe os dados abaixo
+              </div>
             </div>
             <div class="card-body px-lg-12 py-lg-12">
               <form class="needs-validation" @submit.prevent="handleSubmit">
@@ -63,13 +65,14 @@
                 />
 
                 <base-input
-                  v-validate="'required|min:8|max:12'"
+                  v-validate="'required|min:13|max:14'"
+                  v-mask="'55 (00) 0 0000-0000'"
                   v-model="objetoAPI.Telefone"
-                  :error="getError('Telefone')"
-                  :valid="isValid('Telefone')"
+                  :error="getError('telefone')"
+                  :valid="isValid('telefone')"
                   name="telefone"
                   class="mb-3"
-                  placeholder="Telefone (DDD + Telefone)"
+                  placeholder="Celular (País + DDD + Telefone)"
                   type="number"
                   addon-left-icon="ni ni-mobile-button"
                 />
@@ -109,7 +112,8 @@
                     v-for="objeto in registerForm.genero"
                     :key="objeto.id"
                     :value="objeto.id"
-                  >{{ objeto.descricao }}</option>
+                    >{{ objeto.descricao }}</option
+                  >
                 </select>
                 <br />
 
@@ -120,18 +124,23 @@
                     v-for="objeto in registerForm.idiomas"
                     :key="objeto.id"
                     :value="objeto.id"
-                  >{{ objeto.descricao }}</option>
+                    >{{ objeto.descricao }}</option
+                  >
                 </select>
                 <br />
 
-                <label>Selecione um segundo idioma (Se você não fala outro idioma, selecione o seu idioma natal):</label>
+                <label
+                  >Selecione um segundo idioma (Se você não fala outro idioma,
+                  selecione o seu idioma natal):</label
+                >
                 <select v-model="objetoAPI.IdIdiomaDominio">
                   Escolha um item
                   <option
                     v-for="objeto in registerForm.idiomas"
                     :key="objeto.id"
                     :value="objeto.id"
-                  >{{ objeto.descricao }}</option>
+                    >{{ objeto.descricao }}</option
+                  >
                 </select>
                 <br />
 
@@ -142,7 +151,8 @@
                     v-for="objeto in registerForm.idiomas"
                     :key="objeto.id"
                     :value="objeto.id"
-                  >{{ objeto.descricao }}</option>
+                    >{{ objeto.descricao }}</option
+                  >
                 </select>
                 <br />
 
@@ -153,11 +163,15 @@
                     v-for="objeto in registerForm.universidade"
                     :key="objeto.id"
                     :value="objeto.id"
-                  >{{ objeto.descricao }}</option>
+                    >{{ objeto.descricao }}</option
+                  >
                 </select>
                 <br />
 
-                <label>Selecione uma área que você possua domínio para ensinar:</label>
+                <label
+                  >Selecione uma área que você possua domínio para
+                  ensinar:</label
+                >
                 <select
                   v-on:change="AreaEstudoDominioSelecionada"
                   v-model="objetoAPI.IdAreaEstudoGeralDominio"
@@ -167,19 +181,23 @@
                     v-for="objeto in registerForm.areasgerais"
                     :key="objeto.id"
                     :value="objeto.id"
-                  >{{ objeto.descricao }}</option>
+                    >{{ objeto.descricao }}</option
+                  >
                 </select>
                 <br />
 
                 <div v-show="objetoAPI.IdAreaEstudoGeralDominio != ''">
-                  <label>Dentro dessa área, qual assunto você mais domina?</label>
+                  <label
+                    >Dentro dessa área, qual assunto você mais domina?</label
+                  >
                   <select v-model="objetoAPI.IdAreaEstudoEspecificoDominio">
                     Escolha um item
                     <option
                       v-for="objeto in registerForm.areasespecificasdominio"
                       :key="objeto.id"
                       :value="objeto.id"
-                    >{{ objeto.descricao }}</option>
+                      >{{ objeto.descricao }}</option
+                    >
                   </select>
                   <br />
                 </div>
@@ -194,18 +212,23 @@
                     v-for="objeto in registerForm.areasgerais"
                     :key="objeto.id"
                     :value="objeto.id"
-                  >{{ objeto.descricao }}</option>
+                    >{{ objeto.descricao }}</option
+                  >
                 </select>
 
                 <div v-show="objetoAPI.IdAreaEstudoGeralAprendizado != ''">
-                  <label>Dentro dessa área, qual assunto você tem mais interesse?</label>
+                  <label
+                    >Dentro dessa área, qual assunto você tem mais
+                    interesse?</label
+                  >
                   <select v-model="objetoAPI.IdAreaEstudoEspecificoAprendizado">
                     Escolha um item
                     <option
                       v-for="objeto in registerForm.areasespeficiasaprendizado"
                       :key="objeto.id"
                       :value="objeto.id"
-                    >{{ objeto.descricao }}</option>
+                      >{{ objeto.descricao }}</option
+                    >
                   </select>
                   <br />
                 </div>
@@ -218,7 +241,8 @@
                     v-for="objeto in registerForm.preferenciaConversa"
                     :key="objeto.id"
                     :value="objeto.id"
-                  >{{ objeto.descricao }}</option>
+                    >{{ objeto.descricao }}</option
+                  >
                 </select>
 
                 <!--
@@ -248,10 +272,12 @@
                   <base-button
                     :disabled="registering"
                     type="primary"
+                    native-type="submit"
                     size="lg"
                     class="mt-1 btn-block"
                     @click="registrarUsuario()"
-                  >Registrar</base-button>
+                    >Registrar</base-button
+                  >
                 </div>
               </form>
             </div>
@@ -282,6 +308,7 @@ import idioma from "../../../services/idioma";
 import universidadeService from "../../../services/universidade";
 import usuario from "../../../services/usuario";
 import { mapState } from "vuex";
+import { mask } from "vue-the-mask";
 
 export default {
   name: "Register",
@@ -326,6 +353,9 @@ export default {
         areasespeficiasaprendizado: []
       }
     };
+    directives: {
+      mask;
+    }
   },
   mounted() {
     //para testar o retorno

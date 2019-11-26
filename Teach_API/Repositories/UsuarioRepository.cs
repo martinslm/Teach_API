@@ -206,7 +206,7 @@ namespace Teach_API.Repositories
                                 AreaEstudoParaAprenderGeral = new AreaEstudo { Id = Convert.ToInt32(reader["idGeralAprendizado"]), Descricao = reader["descGeralAprendizado"].ToString() },
                                 AreaEstudoParaAprenderEspecifico = new AreaEstudo { Id = Convert.ToInt32(reader["idEspecificaAprendizado"]), Descricao = reader["descEspecificaAprendizado"].ToString() },
                                 TipoIteracao = (TipoIteracao)Convert.ToInt32(reader["preferenciaConversa"]),
-                                Telefone = reader["telefone"].ToString()
+                                //Telefone = reader["telefone"].ToString()
                             };
                         }
                     }

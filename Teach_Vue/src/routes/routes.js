@@ -24,11 +24,11 @@ const dashboardPages = {
   component: DashboardLayout,
   name: "Dashboard",
   meta: {
-    requiresAuth: true
+    requiresAuth: false
   },
   children: [
     {
-      path: "/userProfile",
+      path: "/UserProfile",
       name: "UserProfile",
       component: UserProfile,
       meta: {

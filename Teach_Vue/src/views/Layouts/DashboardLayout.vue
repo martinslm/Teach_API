@@ -1,12 +1,12 @@
 <template>
   <div class="wrapper" :class="{ 'nav-open': $sidebar.showSidebar }">
-    <side-bar :background-color="sidebarBackground" short-title="Argon" title="Argon">
+    <side-bar :background-color="sidebarBackground" short-title="Teach" title="Teach">
       <template slot="links">
         <sidebar-item
           :link="{
             name: 'Dashboard',
             icon: 'ni ni-tv-2 text-primary',
-            path: '/dashboard'
+            path: '/UserProfile'
           }"
         />
 

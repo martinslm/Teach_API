@@ -57,15 +57,16 @@ const accountModule = {
         name,
         email,
         password,
-        dateofbirth,
-        idiomamaterno,
-        idiomapratica,
-        areadominio,
-        areaaprendizado,
-        assuntoaprender,
-        conversa,
-        universidade,
-        areaestudo
+        telefone,
+        DataNascimento,
+        IdIdiomaOrigem,
+        IdIdiomaAprendizado,
+        IdIdiomaDominio,
+        Universidade,
+        IdAreaEstudoEspecificoDominio,
+        TipoIteracao,
+        IdAreaEstudoGeralDominio,
+        Genero
       }
     ) => {
       commit("REGISTER_REQUEST");
@@ -73,15 +74,16 @@ const accountModule = {
         name,
         email,
         password,
-        dateofbirth,
-        idiomamaterno,
-        idiomapratica,
-        areadominio,
-        areaaprendizado,
-        assuntoaprender,
-        conversa,
-        universidade,
-        areaestudo
+        telefone,
+        DataNascimento,
+        IdIdiomaOrigem,
+        IdIdiomaAprendizado,
+        IdIdiomaDominio,
+        Universidade,
+        IdAreaEstudoEspecificoDominio,
+        TipoIteracao,
+        IdAreaEstudoGeralDominio,
+        Genero
       ).then(
         res => {
           commit("REGISTER_SUCCESS");
