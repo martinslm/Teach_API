@@ -22,7 +22,7 @@
       </div>
     </base-header>
     <div class="container text-center">
-      <h1 class="display-2 text-white">Temos sugestões para você</h1>
+      <h1 class="display-2 text-black">Temos sugestões para você</h1>
       <table class="table">
         <thead class="thead-dark">
           <tr>

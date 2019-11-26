@@ -147,6 +147,7 @@ namespace Teach_API.Repositories
 	                            ,u.senha AS senha
 	                            ,u.genero AS genero
 	                            ,u.data_nascimento AS dataNascimento
+                                ,u.telefone AS telefone
 	                            ,u.preferencia_conversa AS preferenciaConversa
 	                            ,un.id_universidade AS idUniversidade
 	                            ,un.universidade AS universidade
@@ -206,7 +207,7 @@ namespace Teach_API.Repositories
                                 AreaEstudoParaAprenderGeral = new AreaEstudo { Id = Convert.ToInt32(reader["idGeralAprendizado"]), Descricao = reader["descGeralAprendizado"].ToString() },
                                 AreaEstudoParaAprenderEspecifico = new AreaEstudo { Id = Convert.ToInt32(reader["idEspecificaAprendizado"]), Descricao = reader["descEspecificaAprendizado"].ToString() },
                                 TipoIteracao = (TipoIteracao)Convert.ToInt32(reader["preferenciaConversa"]),
-                                //Telefone = reader["telefone"].ToString()
+                                Telefone = reader["telefone"].ToString()
                             };
                         }
                     }
