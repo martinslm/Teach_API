@@ -15,14 +15,14 @@
               <p
                 class="text-white mt-0 mb-5"
               >Esta é sua página, onde você pode ver o progresso e gerenciar seus cursos</p>
-              <a href="#!" class="btn btn-info">Editar perfil</a>
+              <!--<a href="#!" class="btn btn-info">Editar perfil</a>-->
             </router-link>
           </div>
         </div>
       </div>
     </base-header>
     <div class="container text-center">
-      <h1 class="display-2 text-white">Temos sugestões para você</h1>
+      <h1 class="display-2 text-black">Temos sugestões para você</h1>
       <table class="table">
         <thead class="thead-dark">
           <tr>
@@ -52,7 +52,11 @@
                 width="20%"
               >{{objeto.areaEstudoParaAprenderGeral.descricao}} - {{objeto.areaEstudoParaAprenderEspecifico.descricao}}</th>
               <th>
-                <a href="#!" class="btn btn-info" @click="enviarMensagem(objeto.telefone)">Enviar mensagem</a>
+                <a
+                  href="#!"
+                  class="btn btn-info"
+                  @click="enviarMensagem(objeto.telefone)"
+                >Enviar mensagem</a>
               </th>
             </tr>
           </template>
@@ -135,10 +139,9 @@ export default {
     };
   },
   methods: {
-    enviarMensagem(numero){
-
-       window.location.href = "https://api.whatsapp.com/send?l=pt&phone=" + numero;
-
+    enviarMensagem(numero) {
+      window.location.href =
+        "https://api.whatsapp.com/send?l=pt&phone=" + numero;
     },
     calcula(dobString) {
       var dob = new Date(dobString);

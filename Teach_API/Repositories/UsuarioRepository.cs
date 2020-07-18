@@ -147,6 +147,7 @@ namespace Teach_API.Repositories
 	                            ,u.senha AS senha
 	                            ,u.genero AS genero
 	                            ,u.data_nascimento AS dataNascimento
+                                ,u.telefone AS telefone
 	                            ,u.preferencia_conversa AS preferenciaConversa
 	                            ,un.id_universidade AS idUniversidade
 	                            ,un.universidade AS universidade
